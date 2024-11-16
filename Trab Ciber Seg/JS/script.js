@@ -1,8 +1,15 @@
+console.log('etapa1 foi')
 function confirmPurchase() {
     const cardName = document.getElementById("cardName").value;
     const cardNumber = document.getElementById("cardNumber").value;
     const cardExpiry = document.getElementById("cardExpiry").value;
     const cardCvv = document.getElementById("cardCvv").value;
+
+    console.log(cardName);
+
+    function confirmNumberCard(){
+        
+    }
 
     // Aqui, você pode futuramente adicionar a criptografia AES ou RSA nos dados do cartão
     // Exemplo (simulação):
