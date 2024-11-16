@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Confirmação de Compra</title>
     <link rel="stylesheet" href="Estilo/style.css">
+    <script type="module" src="JS/script.js"></script>
 </head>
 <body>
     <div class="checkout-panel">
@@ -48,19 +49,19 @@
               <div class="small-inputs">
                 <div>
                   <label for="date">Data de Validade</label>
-                  <input type="text" id="date"/>
+                  <input type="text" id="date" placeholder="MM/AAAA" maxlength="6"/>
                 </div>
        
                 <div>
                   <label for="verification">CVV / CVC</label>
-                  <input type="password" id="verification"/>
+                  <input type="password" id="verification" maxlength="3"/>
                 </div>
               </div>
        
             </div>
             <div class="column-2">
               <label for="cardnumber">Número do cartão</label>
-              <input type="text" id="cardnumber"/>
+              <input type="text" id="cardnumber" maxlength="16"/>
        
               <span class="info">*CVV ou CVC é o código de segurança do cartão, um número único de três dígitos localizado no verso do seu cartão, separado do número do cartão.</span>
             </div>
@@ -68,11 +69,10 @@
         </div>
        
         <div class="panel-footer">
-          <button class="btn back-btn">Back</button>
-          <button class="btn next-btn">Next Step</button>
+          <button class="btn back-btn">Anterior</button>
+          <button onclick="confirmPurchase()" class="btn next-btn">Próximo Passo</button>
         </div>
       </div>
-<script type="module" src="JS/script.js"></script>
 
 </body>
 </html>
