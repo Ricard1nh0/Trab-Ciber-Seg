@@ -89,24 +89,24 @@
   }
    
   .step:nth-child(1):before {
-    content: 'Cart';
+    content: 'Carrinho';
   }
   .step:nth-child(2):before {
     right: -40px;
-    content: 'Confirmation';
+    content: 'Confirmação';
   }
   .step:nth-child(3):before {
     right: -30px;
-    content: 'Payment';
+    content: 'Pagamento';
   }
   .step:nth-child(4):before {
     right: 0;
-    content: 'Finish';
+    content: 'Finalizado';
   }
   .payment-method {
     display: flex;
     margin-bottom: 60px;
-    justify-content: space-between;
+    justify-content: center;
   }
    
   .method {
@@ -236,3 +236,34 @@
   .warning {
     border-color: #1abc9c;
   }
+
+  /*Estilos para página após confirmação de compra*/
+
+  .confirmation-message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 70%;
+    text-align: center;
+  }
+  
+  .confirmation-message p {
+    font-size: 40px;
+    color: #1abc9c;
+  }
+  
+  .confirmation-message i {
+    font-size: 48px;
+    color: #1abc9c;
+    margin-top: 20px;
+  }
+
+  .confirmation-message img {
+    margin-top: 20px; 
+    width: 300px; 
+    height: 300px;
+  }
+
+  
+  

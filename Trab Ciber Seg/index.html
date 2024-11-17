@@ -5,73 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Confirmação de Compra</title>
     <link rel="stylesheet" href="Estilo/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="JS/script.js"></script>
 </head>
 <body>
-    <div class="checkout-panel">
-        <div class="panel-body">
-          <h2 class="title">Confirmação de Compra!</h2>
-       
-          <div class="progress-bar">
+  <div class="checkout-panel">
+    <div class="panel-body">
+        <h2 class="title">Confirmação de Compra!</h2>
+        
+        <div class="progress-bar">
             <div class="step active"></div>
             <div class="step active"></div>
             <div class="step"></div>
             <div class="step"></div>
-          </div>
-       
-          <div class="payment-method">
+        </div>
+        
+        <div class="payment-method">
             <label for="card" class="method card">
-              <div class="card-logos">
-                <img src="https://designmodo.com/demo/checkout-panel/img/visa_logo.png"/>
-                <img src="https://designmodo.com/demo/checkout-panel/img/mastercard_logo.png"/>
-              </div>
-       
-              <div class="radio-input">
-                <input id="card" type="radio" name="payment">
-                Pague R$ 20,99 com Cartão de Crédito
-              </div>
-            </label>
-       
-            <label for="paypal" class="method paypal">
-              <img src="https://designmodo.com/demo/checkout-panel/img/paypal_logo.png"/>
-              <div class="radio-input">
-                <input id="paypal" type="radio" name="payment">
-                Pague R$ 20,99 com PayPal
-              </div>
-            </label>
-          </div>
-       
-          <div class="input-fields">
-            <div class="column-1">
-              <label for="cardholder">Nome</label>
-              <input type="text" id="cardholder" />
-       
-              <div class="small-inputs">
-                <div>
-                  <label for="date">Data de Validade</label>
-                  <input type="text" id="date" placeholder="MM/AAAA" maxlength="6"/>
-                </div> 
-       
-                <div>
-                  <label for="verification">CVV / CVC</label>
-                  <input type="password" id="verification" maxlength="3"/>
+                <div class="card-logos">
+                    <img src="https://designmodo.com/demo/checkout-panel/img/visa_logo.png"/>
+                    <img src="https://designmodo.com/demo/checkout-panel/img/mastercard_logo.png"/>
                 </div>
-              </div>
-       
+                
+                <div class="radio-input">
+                    <input id="card" type="radio" name="payment">
+                    Pague R$ 20,99 com Cartão de Crédito
+                </div>
+            </label>
+        </div>
+      
+        <div class="input-fields">
+            <div class="column-1">
+                <label for="cardholder">Nome</label>
+                <input type="text" id="cardholder"/>
+                
+                <div class="small-inputs">
+                    <div>
+                        <label for="date">Data de Validade</label>
+                        <input type="text" id="expiryDate" maxlength="5" oninput="formataDataValidade(this)" placeholder="MM/AA">
+                    </div> 
+                    
+                    <div>
+                        <label for="verification">CVV / CVC</label>
+                        <input type="password" id="verification" maxlength="3" placeholder="***"/>
+                    </div>
+                </div>
+                
             </div>
             <div class="column-2">
-              <label for="cardnumber">Número do cartão</label>
-              <input type="text" id="cardnumber" maxlength="16"/>
-       
-              <span class="info">*CVV ou CVC é o código de segurança do cartão, um número único de três dígitos localizado no verso do seu cartão, separado do número do cartão.</span>
+                <label for="cardnumber">Número do cartão</label>
+                <input type="text" id="cardnumber" maxlength="19" oninput="formataCardNumber(this)" placeholder="0000 0000 0000 0000">
+                
+                <span class="info">*CVV ou CVC é o código de segurança do cartão, um número único de três dígitos localizado no verso do seu cartão, separado do número do cartão.</span>
             </div>
-          </div>
         </div>
-       
-        <div class="panel-footer">
-          <button class="btn back-btn">Anterior</button>
-          <button onclick="confirmPurchase()" class="btn next-btn">Próximo Passo</button>
-        </div>
-      </div>
+    </div>
+    
+    <div class="panel-footer">
+        <button class="btn back-btn" onclick="goBack()">Anterior</button>
+        <button onclick="confirmPurchase()" class="btn next-btn">Confirmar Compra</button>
+    </div>
+</div>
+
 </body>
 </html>
