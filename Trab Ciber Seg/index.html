@@ -6,6 +6,8 @@
     <title>Confirmação de Compra</title>
     <link rel="stylesheet" href="Estilo/style.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsencrypt/3.0.0/jsencrypt.min.js"></script>
     <script src="JS/script.js"></script>
 </head>
 <body>
@@ -19,7 +21,8 @@
             <div class="step"></div>
             <div class="step"></div>
         </div>
-        
+
+        <!-- Método de Pagamento -->
         <div class="payment-method">
             <label for="card" class="method card">
                 <div class="card-logos">
@@ -33,24 +36,24 @@
                 </div>
             </label>
         </div>
-      
+
+        <!-- Campos de Entrada -->
         <div class="input-fields">
             <div class="column-1">
                 <label for="cardholder">Nome</label>
-                <input type="text" id="cardholder"/>
-                
+                <input type="text" id="cardholder" placeholder="Nome no cartão"/>
+
                 <div class="small-inputs">
                     <div>
-                        <label for="date">Data de Validade</label>
+                        <label for="expiryDate">Data de Validade</label>
                         <input type="text" id="expiryDate" maxlength="5" oninput="formataDataValidade(this)" placeholder="MM/AA">
                     </div> 
                     
                     <div>
                         <label for="verification">CVV / CVC</label>
-                        <input type="password" id="verification" maxlength="3" placeholder="***"/>
+                        <input type="password" id="verification" maxlength="4" placeholder="***"/>
                     </div>
                 </div>
-                
             </div>
             <div class="column-2">
                 <label for="cardnumber">Número do cartão</label>
@@ -61,11 +64,18 @@
         </div>
     </div>
     
+    <!-- Rodapé -->
     <div class="panel-footer">
         <button class="btn back-btn" onclick="goBack()">Anterior</button>
         <button onclick="confirmPurchase()" class="btn next-btn">Confirmar Compra</button>
     </div>
-</div>
+  </div>
 
+  <!-- Resultado da Criptografia -->
+  <div id="encryptionResult" style="display: none; margin-top: 20px;">
+    <h3>Resultado da Criptografia:</h3>
+    <p><strong>Dados Criptografados:</strong> <span id="encryptedData"></span></p>
+    <p><strong>Dados Descriptografados:</strong> <span id="decryptedData"></span></p>
+  </div>
 </body>
 </html>
