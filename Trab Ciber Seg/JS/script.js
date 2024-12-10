@@ -17,7 +17,7 @@ function confirmPurchase() {
 
     const cardData = JSON.stringify({ cardName, cardNumber, cardExpiry, cardCvv });
 
-    // Chave pública RSA
+
     const publicKey = `
     -----BEGIN PUBLIC KEY-----
     MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAx8Nv8okqNZW8pG46gE5G
@@ -30,15 +30,14 @@ function confirmPurchase() {
     -----END PUBLIC KEY-----
     `;
 
-    // Chave AES gerada dinamicamente
+
     const aesKey = CryptoJS.lib.WordArray.random(16).toString(CryptoJS.enc.Hex);
     console.log("Chave AES Gerada:", aesKey);
 
-    // Criptografar dados com AES
+
     const encryptedAESData = CryptoJS.AES.encrypt(cardData, aesKey).toString();
     console.log("Dados Criptografados com AES:", encryptedAESData);
 
-    // Criptografar chave AES com RSA
     const jsEncrypt = new JSEncrypt();
     jsEncrypt.setPublicKey(publicKey);
     const encryptedAESKey = jsEncrypt.encrypt(aesKey);
@@ -56,25 +55,50 @@ function confirmPurchase() {
     }
     console.log("Chave AES Criptografada com RSA:", encryptedAESKey);
 
-    // Simular descriptografia para teste
+    
     const decryptedAESKey = aesKey; // Apenas para simulação, normalmente descriptografado com chave privada
     console.log("Chave AES Descriptografada:", decryptedAESKey);
 
-    // Descriptografar dados com AES
+
     const bytes = CryptoJS.AES.decrypt(encryptedAESData, decryptedAESKey);
     const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
     console.log("Dados Descriptografados:", decryptedData);
 
-    // Exibir resultados
-    displayEncryptionResult(encryptedAESData, decryptedData);
+
 
     Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "Compra confirmada!",
-        showConfirmButton: false,
-        timer: 1500
+        title: "<h2 style='color:#3085d6;'>Descriptografia Completa</h2>",
+        html: `
+            <div style="text-align:left; font-size:16px; line-height:1.5; color:#333;">
+                <p><strong>Dados Criptografados:</strong> <code>${encryptedAESData}</code></p>
+                <p><strong>Chave AES Descriptografada:</strong> <code>${decryptedAESKey}</code></p>
+                <p><strong>Dados Descriptografados:</strong></p>
+                <pre style="background:#f8f9fa; padding:10px; border-radius:4px; color:#212529; overflow-x:auto;">
+    ${JSON.stringify(decryptedData, null, 2)}
+                </pre>
+            </div>
+        `,
+        icon: "info",
+        confirmButtonText: "Entendido",
+        showCloseButton: true,
+        allowOutsideClick: false,
+        width: 600,
+        customClass: {
+            popup: 'swal2-shadow'
+        }
+    }).then(() => {
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Operação confirmada com sucesso!",
+            showConfirmButton: false,
+            timer: 1500
+        }).then(() => {
+            document.getElementById("meuFormulario").reset();
+        });
     });
+    
+    
 }
 
 function formataCardNumber(input) {
